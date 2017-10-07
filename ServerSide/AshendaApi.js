@@ -26,7 +26,6 @@ app.use(bodyParser.json());
  app.post("/Ashenda", function(req, res, next) {
   // Add your code here.
    var product = req.body;
-   console.log(product);
    var id = product.id;// we are not using this attribute instead objectId
    var eventName= product.eventName;
    var imgID = product.imgID;
@@ -48,13 +47,11 @@ app.use(bodyParser.json());
      product.save(function(err, product) {
         if(err) {
              res.status(500);
-             console.log( res.status(500));
              next("Internal server error.");
          } else if(product == null) {
              res.status(404); // Not found
             next("No appointment with code " + idProduct + " found.");
          } else {
-            console.log(res.status(201));
             res.status(201);
              res.json(product);
          }
